@@ -18,6 +18,7 @@ class CreateTransaksisTable extends Migration
             $table->unsignedInteger('paket_id');
             $table->string('pemesan');
             $table->string('no_telp');
+            $table->string('email');
             $table->string('jumlah');
             $table->timestamps();
         });

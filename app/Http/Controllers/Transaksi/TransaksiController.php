@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Transaksi;
 use App\Agen;
 use App\Paket;
 use App\Transaksi;
+use App\Mail\NotifTransaksi;
 use Nexmo\Laravel\Facade\Nexmo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -31,6 +32,7 @@ class TransaksiController extends Controller
             'paket_id'  => $request->paket_id,
             'pemesan'   => $request->pemesan,
             'no_telp'   => $request->no_telp,
+            'email'     => $request->email,
             'jumlah'    => $request->jumlah,
             
         ]);
@@ -40,7 +42,13 @@ class TransaksiController extends Controller
             'from' => 'Dimas Setiawan',
             'text' => 'Tugas Send SMS XII RPL Dimas Setiawan',
         ]);
+        
+        // \Mail::raw('Terima kasih' .$transaksis->pemesan, function($message) use($transaksis) {
+        //     $message->to($transaksis->email, $transaksi->pemesan);
+        //     $message->subject('Terima Kasih Sudah Memesan');
+        // });
 
+        \Mail::to($transaksis->email)->send(new NotifTransaksi);
 
         $transaksis->save();
         toast('Transaksi Berhasil Ditambahkan','success');

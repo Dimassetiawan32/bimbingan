@@ -27,6 +27,12 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label for="">Email</label>
+                                    <input type="text" name="email" class="form-control" id="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label for="">Paket</label>
                                     <select name="paket_id" id="" class="form-control">
                                             <option>----- Pilih Paket -----</option>
